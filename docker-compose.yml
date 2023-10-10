@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    image: ai_portal_app
+    container_name: ai_portal_app
+    stdin_open: true
+    tty: false
+    build:
+      context: .
+      dockerfile: Dockerfile # Path to your Dockerfile
+    # volumes:
+    #   - ./:/home/node/app
+      # - ./node_modules:/home/node/app/node_modules
+      # - ./.nuxt:/home/node/app/.nuxt
+    ports:
+      - "3000:3000"
+      - "24678:24678"
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
